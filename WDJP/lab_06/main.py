@@ -82,4 +82,50 @@ def zad5(listOfSurnames):
         for i in listFromM:
             nzFile.write(i + '\n')
 
-zad5(['Abb', 'Mmm', 'Zzz', 'Ooo', 'Bbb'])
+# zad5(['Abb', 'Mmm', 'Zzz', 'Ooo', 'Bbb'])
+
+#Zad6
+
+def zad6(sentence):
+    listOfWords = sentence.split(" ")
+    listOfWords = [x[::-1] for x in listOfWords]
+    print(listOfWords)
+#
+# zad6("Ala ma kota")
+
+#Zad7
+#Przepraszam za to zadanie, ale nie miałem weny aby zrobić je w poprawny sposób
+def zad7():
+    numbers = [x for x in range(2, 11)]
+    numbersAndFigures = numbers + ['Jopek', 'Dama', 'Król', 'As']
+    colors = ['Pik', 'Karo', 'Trefl', 'Kier']
+    colorsWithFigures = [str(x) + ' ' + y for x in numbersAndFigures for y in colors]
+    import random
+    player1 = []
+    player2 = []
+    player3 = []
+    player4 = []
+    for i in range(5):
+        player1.append(colorsWithFigures.pop(random.randint(0, len(colorsWithFigures)-1)))
+        player2.append(colorsWithFigures.pop(random.randint(0, len(colorsWithFigures)-1)))
+        player3.append(colorsWithFigures.pop(random.randint(0, len(colorsWithFigures)-1)))
+        player4.append(colorsWithFigures.pop(random.randint(0, len(colorsWithFigures)-1)))
+    print(player1)
+    print(player2)
+    print(player3)
+    print(player4)
+
+# zad7()
+
+#Zad8
+from unidecode import unidecode
+
+def zad8(domain):
+    with open('nazwiska.txt', 'r', encoding='utf-8') as surnames:
+        with open('emails.txt', 'a+', encoding='utf-8') as emails:
+            for surname in surnames:
+                nameAndSurname = surname.replace(" ", ".").replace('\n', '').lower() + '@' + domain
+                emails.write(surname.replace('\n', '') + ' ' + nameAndSurname + '\n')
+
+zad8('domena')
+

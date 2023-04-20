@@ -124,8 +124,47 @@ def zad8(domain):
     with open('nazwiska.txt', 'r', encoding='utf-8') as surnames:
         with open('emails.txt', 'a+', encoding='utf-8') as emails:
             for surname in surnames:
-                nameAndSurname = surname.replace(" ", ".").replace('\n', '').lower() + '@' + domain
-                emails.write(surname.replace('\n', '') + ' ' + nameAndSurname + '\n')
+                nameAndSurname = unidecode(surname).replace(" ", ".").replace('\n', '').lower() + '@' + domain
+                emails.write(unidecode(surname).replace('\n', '') + ' ' + nameAndSurname + '\n')
 
-zad8('domena')
+# zad8('domena')
 
+#Zad9
+
+import random
+
+def zad9():
+    with open('hasla.txt', 'r', encoding='utf-8') as passwords:
+        listOfPasswords = []
+        for password in passwords:
+            listOfPasswords.append(password.replace('\n', '').lower())
+        ourPassword = listOfPasswords.pop(random.randint(0, len(listOfPasswords)-1))
+        guessed = ''
+        for char in ourPassword:
+            if char != ' ':
+                guessed += '_'
+            else:
+                guessed += ' '
+
+        while(True):
+            print(guessed)
+            inputLetter = input().lower()
+
+            if inputLetter.lower() == ourPassword.lower():
+                break
+
+            indexes = [x for x in range(len(ourPassword)) if ourPassword[x] == inputLetter]
+
+            if indexes:
+                for index in indexes:
+                    guessed = guessed[:index] + inputLetter + guessed[index + 1:]
+            else:
+                print("There is no such letter")
+
+            if guessed.count('_') == 0:
+                break
+
+        print("Good Game, You Won")
+
+
+# zad9()

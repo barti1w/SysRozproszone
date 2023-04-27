@@ -2,6 +2,8 @@ from timeit import timeit
 from array import array
 import random
 from datetime import datetime
+from collections import Counter, deque
+
 
 # Zad1
 setup = """
@@ -129,3 +131,27 @@ with open('zamowienia.csv', encoding='utf-8-sig', errors='ignore') as file:
 
 for d in data[:5]:
     print(d)
+
+def create_kolo_fortuny(*args):
+    counter = Counter(args)
+    return deque(counter.elements())
+
+kolo_fortuny = create_kolo_fortuny(1, 2, 3, 4, 5, 6, 7)
+print((kolo_fortuny))
+
+def spinit(queue: deque):
+    import time
+    import numpy as np
+
+    ticks = len(queue)
+    waits = np.logspace(0.0, 1.0, num=ticks) / ticks
+    howMany = 0
+
+    for tick in queue:
+        print(f'Twoja wygrana to: {tick}', end='')
+        time.sleep(waits[howMany])
+        print('\r', end='')
+        howMany += 1
+
+spinit(kolo_fortuny)
+

@@ -1,0 +1,29 @@
+/* Users styles */
+
+.users-container {
+    margin-top: 50px;
+}
+
+.users-container ul {
+    list-style: none;
+}
+
+.users-container ul li:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.users-container ul li:nth-child(odd) {
+    background-color: #fff;
+}
+
+.users-container ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 500px;
+    border: 1px solid #f2f2f2;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
